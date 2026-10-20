@@ -29,4 +29,4 @@ npm run lint
 
 ## Deploy
 
-Deployed on Vercel from the `main` branch. Vercel detects Vite automatically: build command `npm run build`, output `dist`.
+Live at https://www.satyatalla.com (domain on Cloudflare DNS, records set to DNS only). Deployed on Vercel from the `main` branch. Vercel detects Vite automatically: build command `npm run build`, output `dist`.
