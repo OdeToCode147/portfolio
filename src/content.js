@@ -19,7 +19,7 @@ export const person = {
   linkedin: 'https://www.linkedin.com/in/suryatalla147/',
   github: 'https://github.com/OdeToCode147',
   resume: '/resume/Satya_Talla_Software_Engineer_Resume.pdf',
-  resumeSize: '82 KB',
+  resumeSize: '83 KB',
   availability: 'Open to full-time roles',
   availabilityWhere: 'across Australia',
 };
