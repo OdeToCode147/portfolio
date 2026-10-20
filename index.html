@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Satya Talla · Full stack developer, Melbourne</title>
+    <meta
+      name="description"
+      content="Satya Talla is a Melbourne full stack developer with 2.5+ years shipping React, Next.js, Node and Django apps. Award-winning Monash capstone, client WebAR and CMS work."
+    />
+    <meta name="author" content="Satya Surya Vamsi Talla" />
+    <meta name="theme-color" content="#f3f4f1" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Satya Talla · Full stack developer" />
+    <meta
+      property="og:description"
+      content="I build web apps from the pixel to the server. React, Next.js, Node, Django and AWS, based in Melbourne."
+    />
+    <meta property="og:image" content="/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script>
+      // Set theme and motion flags before first paint so nothing flashes.
+      (function () {
+        var d = document.documentElement;
+        var saved = null;
+        try { saved = localStorage.getItem('theme'); } catch (e) {}
+        var dark = saved ? saved === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+        if (dark) d.classList.add('dark');
+        if (!matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('motion');
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

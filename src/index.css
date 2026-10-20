@@ -1,0 +1,245 @@
+@import '@fontsource-variable/archivo/wdth.css';
+@import '@fontsource-variable/jetbrains-mono/wght.css';
+@import 'lenis/dist/lenis.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Brand: "Drafting Table" ─────────────────────────────────────────────
+   Paper, ink, one ultramarine accent. Every colour, font, size and space
+   the components use lives here. */
+:root {
+  --paper: #f3f4f1;
+  --panel: #fafaf8;
+  --ink: #0e1116;
+  --graphite: #434a55;
+  --muted: #5f6672;
+  --rule: #d6d9d2;
+  --rule-strong: #b9bdb5;
+  --accent: #2f3cff;
+  --accent-ink: #ffffff;
+  --accent-wash: rgb(47 60 255 / 0.08);
+  --grid: rgb(14 17 22 / 0.055);
+
+  --font-sans: 'Archivo Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, 'SFMono-Regular', monospace;
+  --wide: 118%;
+
+  --step--1: clamp(0.8rem, 0.78rem + 0.1vw, 0.86rem);
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --step-1: clamp(1.2rem, 1.1rem + 0.45vw, 1.45rem);
+  --step-2: clamp(1.5rem, 1.3rem + 0.9vw, 2.1rem);
+  --step-3: clamp(2rem, 1.6rem + 1.9vw, 3.4rem);
+  --step-4: clamp(2.6rem, 1.8rem + 3.6vw, 5.4rem);
+
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
+  --section: clamp(5rem, 3.5rem + 7vw, 10rem);
+  --max: 82rem;
+  --nav-h: 4.25rem;
+  --radius: 1.25rem;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --t-ui: 200ms;
+
+  /* Hairline figures: lit parts pick up the accent. */
+  --hairline-plate: var(--paper);
+  --hairline-hi: var(--accent);
+  --hairline-edge: var(--ink);
+  --hairline-mid: #868c96;
+  --hairline-lo: #c3c7cd;
+  --hairline-stroke: 1;
+
+  color-scheme: light;
+}
+
+:root.dark {
+  --paper: #0b0d10;
+  --panel: #111419;
+  --ink: #eceef1;
+  --graphite: #b7bdc6;
+  --muted: #8f96a1;
+  --rule: #242931;
+  --rule-strong: #353b45;
+  --accent: #8b94ff;
+  --accent-ink: #0b0d10;
+  --accent-wash: rgb(139 148 255 / 0.1);
+  --grid: rgb(236 238 241 / 0.045);
+
+  --hairline-mid: #626a76;
+  --hairline-lo: #2b3039;
+
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background: var(--paper);
+    font-size: var(--step-0);
+    line-height: 1.6;
+    overflow-x: clip;
+  }
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  h1,
+  h2,
+  h3 {
+    font-stretch: var(--wide);
+    letter-spacing: -0.025em;
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer components {
+  .wrap {
+    width: 100%;
+    max-width: var(--max);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+  .mono {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0;
+  }
+
+  /* Drafting paper grid, faded towards the edges. */
+  .grid-paper {
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 32px 32px;
+    background-position: -1px -1px;
+    mask-image: radial-gradient(ellipse 80% 70% at 60% 40%, #000 30%, transparent 75%);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    height: 3.25rem;
+    padding-inline: 1.4rem;
+    border-radius: 999px;
+    font-weight: 560;
+    font-stretch: 108%;
+    transition:
+      background-color var(--t-ui) var(--ease-out),
+      color var(--t-ui) var(--ease-out),
+      border-color var(--t-ui) var(--ease-out);
+  }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .btn-primary:hover {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+  .btn-ghost {
+    border: 1px solid var(--rule-strong);
+    color: var(--ink);
+  }
+  .btn-ghost:hover {
+    border-color: var(--ink);
+  }
+  .btn svg {
+    transition: transform var(--t-ui) var(--ease-out);
+  }
+  .btn:hover svg.nudge-x {
+    transform: translateX(3px);
+  }
+  .btn:hover svg.nudge-y {
+    transform: translateY(2px);
+  }
+
+  .nav-glass {
+    background: color-mix(in srgb, var(--paper) 82%, transparent);
+    backdrop-filter: blur(14px) saturate(1.2);
+    -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  }
+
+  /* Underline that draws in from the left on hover and focus. */
+  .link-draw {
+    background: linear-gradient(currentColor, currentColor) no-repeat 0 100% / 0 1px;
+    transition: background-size 250ms var(--ease-out);
+    padding-bottom: 2px;
+  }
+  .link-draw:hover,
+  .link-draw:focus-visible {
+    background-size: 100% 1px;
+  }
+
+  /* A dimension line: tick, rule, tick. The drafting motif. */
+  .dim {
+    position: relative;
+    height: 1px;
+    background: var(--rule-strong);
+  }
+  .dim::before,
+  .dim::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    width: 1px;
+    height: 9px;
+    background: var(--rule-strong);
+  }
+  .dim::before {
+    left: 0;
+  }
+  .dim::after {
+    right: 0;
+  }
+}
+
+/* Hero copy waits for its load sequence only when motion is on, and never
+   longer than the failsafe. */
+.motion [data-hero] {
+  opacity: 0;
+  animation: hero-failsafe 0s linear 2.4s forwards;
+}
+@keyframes hero-failsafe {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Stacking case studies: switched on from JS only when every card fits. */
+.is-stacking .work-card {
+  position: sticky;
+  top: calc(var(--nav-h) + 1.5rem);
+}
+
+/* Circular theme reveal (View Transitions). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
